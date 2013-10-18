@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66C6141D-CBDE-4137-B808-7924C11E1D90}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModelServices</RootNamespace>
+    <AssemblyName>ModelServices</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\VotingContract.cs" />
+    <Compile Include="DataAccess\Answear.cs">
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AnswearScore.cs">
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Question.cs">
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\voteLy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>voteLy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\voteLy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\voteLy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>voteLy.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Voting.cs">
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\VUser.cs">
+      <DependentUpon>voteLy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\TypeEnums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Voting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\dbScripts\test data.sql" />
+    <Content Include="Database\dbScripts\dbSetup.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\dbPatches\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataAccess\voteLy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>voteLy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataAccess\voteLy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>voteLy.edmx</DependentUpon>
+      <LastGenOutput>voteLy.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DataAccess\voteLy.edmx.diagram">
+      <DependentUpon>voteLy.edmx</DependentUpon>
+    </None>
+    <None Include="DataAccess\voteLy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>voteLy.edmx</DependentUpon>
+      <LastGenOutput>voteLy.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
