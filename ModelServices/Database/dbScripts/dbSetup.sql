@@ -22,6 +22,7 @@ create table Question(
 	VotingId int,
 	Type nvarchar(10),
 	Value nvarchar(1024),
+	OrderSort int,
 	CONSTRAINT FK_Question_Voting FOREIGN KEY (VotingId) REFERENCES Voting(Id)
 )
 GO
@@ -30,6 +31,7 @@ create table Answear(
 	Id int PRIMARY KEY IDENTITY(1,1),
 	QuestionId int,
 	Value nvarchar(1024),
+	OrderSort int,
 	CONSTRAINT FK_Answear_Question FOREIGN KEY (QuestionId) REFERENCES Question(Id)
 )GO
 

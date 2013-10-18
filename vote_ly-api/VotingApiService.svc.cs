@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Web.Mvc;
 using ModelServices.Contracts;
 using ModelServices.DataAccess;
 
@@ -36,6 +37,52 @@ namespace vote_ly_api
         {
             List<VotingContract> votings = Voting.GetVotingsByUser( userId ).Select( x => x.ToContract() ).ToList();
             return votings;
+        }
+
+
+        public QuestionContract GetQuestion( int questionId )
+        {
+            Question question = Question.GetById( questionId );
+            if( question != null )
+                return question.ToContract();
+
+            return null;
+        }
+
+        public List<QuestionContract> GetQuestions( int votingId )
+        {
+            List<QuestionContract> questions = Question.GetByVotingId( votingId ).Select( x => x.ToContract() ).ToList();
+            return questions;
+        }
+
+        public AnswearContract GetAnswear( int answearId )
+        {
+            Answear answear = Answear.GetById( answearId );
+            if( answear != null )
+                return answear.ToContract();
+
+            return null;
+        }
+
+        public List<AnswearContract> GetAnswears( int questionId )
+        {
+            List<AnswearContract> questions = Answear.GetByQuestionId( questionId ).Select( x => x.ToContract() ).ToList();
+            return questions;
+        }
+
+        public bool SubmitVote( int answearId, string voterId, string sessionId )
+        {
+            AnswearScore score = AnswearScore.AddVoteScore( answearId, voterId, sessionId );
+            
+            if(score !=null)
+                return true;
+            
+            return false; 
+        }
+
+        public VotingResultsContract GetResults( int votingId, string sessionId )
+        {
+            return AnswearScore.GetVotingResults(votingId, sessionId);
         }
     }
 }

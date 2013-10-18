@@ -23,6 +23,7 @@ namespace ModelServices.DataAccess
         public Nullable<int> VotingId { get; set; }
         public string Type { get; set; }
         public string Value { get; set; }
+        public Nullable<int> OrderSort { get; set; }
     
         public virtual ICollection<Answear> Answears { get; set; }
         public virtual Voting Voting { get; set; }

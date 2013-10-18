@@ -22,6 +22,7 @@ namespace ModelServices.DataAccess
         public int Id { get; set; }
         public Nullable<int> QuestionId { get; set; }
         public string Value { get; set; }
+        public Nullable<int> OrderSort { get; set; }
     
         public virtual Question Question { get; set; }
         public virtual ICollection<AnswearScore> AnswearScores { get; set; }

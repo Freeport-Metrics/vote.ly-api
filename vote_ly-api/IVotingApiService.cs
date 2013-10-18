@@ -21,5 +21,30 @@ namespace vote_ly_api
         [WebGet( ResponseFormat = WebMessageFormat.Json )]
         List<VotingContract> GetVotings( int userId );
 
+        [OperationContract]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        QuestionContract GetQuestion( int questionId );
+
+        [OperationContract]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        List<QuestionContract> GetQuestions( int votingId );
+
+        [OperationContract]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        AnswearContract GetAnswear( int answearId );
+
+        [OperationContract]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        List<AnswearContract> GetAnswears( int questionId );
+       
+        [OperationContract]
+        //[WebInvoke( Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json )]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        bool SubmitVote( int answearId, string voterId, string sessionId );
+
+        [OperationContract]
+        [WebGet( ResponseFormat = WebMessageFormat.Json )]
+        VotingResultsContract GetResults( int votingId, string sessionId );
+       
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="voteLyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="voteLyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="voteLyModelStoreContainer">
           <EntitySet Name="Answear" EntityType="voteLyModel.Store.Answear" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AnswearScores" EntityType="voteLyModel.Store.AnswearScores" store:Type="Tables" Schema="dbo" />
@@ -35,6 +35,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="QuestionId" Type="int" />
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
+          <Property Name="OrderSort" Type="int" />
         </EntityType>
         <EntityType Name="AnswearScores">
           <Key>
@@ -53,6 +54,7 @@
           <Property Name="VotingId" Type="int" />
           <Property Name="Type" Type="nvarchar" MaxLength="10" />
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
+          <Property Name="OrderSort" Type="int" />
         </EntityType>
         <EntityType Name="Voting">
           <Key>
@@ -119,8 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="voteLyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -156,6 +157,7 @@
           <Property Name="Value" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Question" Relationship="voteLyModel.FK_Answear_Question" FromRole="Answear" ToRole="Question" />
           <NavigationProperty Name="AnswearScores" Relationship="voteLyModel.FK_AnsweaScore_Answear" FromRole="Answear" ToRole="AnswearScores" />
+          <Property Type="Int32" Name="OrderSort" />
         </EntityType>
         <EntityType Name="AnswearScore">
           <Key>
@@ -177,6 +179,7 @@
           <Property Name="Value" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Answears" Relationship="voteLyModel.FK_Answear_Question" FromRole="Question" ToRole="Answear" />
           <NavigationProperty Name="Voting" Relationship="voteLyModel.FK_Question_Voting" FromRole="Question" ToRole="Voting" />
+          <Property Type="Int32" Name="OrderSort" />
         </EntityType>
         <EntityType Name="Voting">
           <Key>
@@ -255,6 +258,7 @@
           <EntitySetMapping Name="Answears">
             <EntityTypeMapping TypeName="voteLyModel.Answear">
               <MappingFragment StoreEntitySet="Answear">
+                <ScalarProperty Name="OrderSort" ColumnName="OrderSort" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
@@ -274,6 +278,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="voteLyModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="OrderSort" ColumnName="OrderSort" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="VotingId" ColumnName="VotingId" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

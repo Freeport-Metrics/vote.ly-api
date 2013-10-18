@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\AnswearContract.cs" />
+    <Compile Include="Contracts\AnswearScoresContract.cs" />
+    <Compile Include="Contracts\QuestionContract.cs" />
+    <Compile Include="Contracts\QuestionWithAnswear.cs" />
+    <Compile Include="Contracts\VotingResultsContract.cs" />
     <Compile Include="Contracts\VotingContract.cs" />
     <Compile Include="DataAccess\Answear.cs">
       <DependentUpon>voteLy.tt</DependentUpon>
@@ -79,6 +84,9 @@
     </Compile>
     <Compile Include="Enums\TypeEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Answear.cs" />
+    <Compile Include="Services\AnwsearScores.cs" />
+    <Compile Include="Services\Question.cs" />
     <Compile Include="Services\Voting.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +103,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DataAccess\voteLy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>voteLy.edmx</DependentUpon>
